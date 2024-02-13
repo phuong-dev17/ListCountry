@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import se.linerotech.module206.project1.common.CountryData
@@ -20,7 +21,6 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        Log.d("P123","SHOW ACTIVITY 6")
         lifecycleScope.launch{
             repeatOnLifecycle(Lifecycle.State.CREATED) {
                 viewModel.state.collect(){
@@ -36,14 +36,14 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showErrorMessage() {
-        Log.d("P123","SHOW ERROR")
+
     }
 
     private fun showCountry(countries: List<CountryData>) {
-        Log.d("P123", "DANH SACH DAT NUOC ${countries.first()}")
+    binding.recyclerView.adapter = CountryRecyclerViewAdapter(countries)
+        binding.recyclerView.layoutManager = LinearLayoutManager(this,LinearLayoutManager.VERTICAL, false)
     }
 
     private fun showProgressBar() {
-        Log.d("P123","SHOW PROGRESS BAR")
     }
 }
