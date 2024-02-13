@@ -38,10 +38,10 @@ class CountryViewModel : ViewModel() {
     private fun convertToCountryData(result: List<CountryDTOItem>): List<CountryData>{
         return result.map {
             CountryData(
-                it.name.official,
+                it.name.common,
                 it.languages?.toList()?.first()?.second?:"",
                 it.flags.png
             )
-        }
+        }.sortedBy{it.country.first()}
     }
 }
