@@ -3,6 +3,7 @@ package se.linerotech.module206.project1
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import se.linerotech.module206.project1.common.CountryData
 import se.linerotech.module206.project1.databinding.LayoutCellBinding
 
@@ -34,8 +35,15 @@ class CountryRecyclerViewAdapter (
         fun bind(country: CountryData) {
             binding.countryName.text = country.country
             binding.language.text = country.language
+            loadImage(country.flagUrl)
         }
-
+        private fun loadImage(url: String) {
+            Glide
+                .with(binding.imgFlag)
+                .load(url)
+                .centerCrop()
+                .into(binding.imgFlag)
+        }
         companion object {
             fun create(parent: ViewGroup): CountryViewHolder {
                 val binding =
@@ -46,4 +54,7 @@ class CountryRecyclerViewAdapter (
             }
         }
     }
+
+
+
 }
