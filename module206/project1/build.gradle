@@ -1,8 +1,8 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
-    id 'com.google.devtools.ksp'
     id 'kotlin-parcelize'
+    id 'com.google.devtools.ksp'
 }
 
 android {
@@ -55,4 +55,11 @@ dependencies {
 
     //RecyclerView
     implementation "androidx.recyclerview:recyclerview:1.3.2"
+
+    // Lifecycle
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.7.0"
+
+    // activity
+    implementation "androidx.activity:activity-ktx:1.8.2"
 }

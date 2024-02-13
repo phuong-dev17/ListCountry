@@ -3,6 +3,7 @@ package se.linerotech.module206.project1
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import se.linerotech.module206.project1.common.CountryData
 import se.linerotech.module206.project1.databinding.LayoutCellBinding
 
 class CountryRecyclerViewAdapter (
