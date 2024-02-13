@@ -7,9 +7,9 @@ import com.bumptech.glide.Glide
 import se.linerotech.module206.project1.common.CountryData
 import se.linerotech.module206.project1.databinding.LayoutCellBinding
 
-class CountryRecyclerViewAdapter (
+class CountryRecyclerViewAdapter(
     private val items: List<CountryData>
-): RecyclerView.Adapter<CountryRecyclerViewAdapter.CountryViewHolder>() {
+) : RecyclerView.Adapter<CountryRecyclerViewAdapter.CountryViewHolder>() {
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -29,7 +29,7 @@ class CountryRecyclerViewAdapter (
         return items.size
     }
 
-    class CountryViewHolder (
+    class CountryViewHolder(
         private val binding: LayoutCellBinding
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(country: CountryData) {
@@ -41,7 +41,6 @@ class CountryRecyclerViewAdapter (
             Glide
                 .with(binding.imgFlag)
                 .load(url)
-                .centerCrop()
                 .into(binding.imgFlag)
         }
         companion object {
@@ -54,7 +53,4 @@ class CountryRecyclerViewAdapter (
             }
         }
     }
-
-
-
 }
