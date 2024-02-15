@@ -1,6 +1,9 @@
 package se.linerotech.module206.project1
 
 import android.os.Bundle
+import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Lifecycle
@@ -20,6 +23,8 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        configureActionBar()
+
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.CREATED) {
                 viewModel.state.collect() {
@@ -33,12 +38,28 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun configureActionBar() {
+        setSupportActionBar(binding.toolBar)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        Log.d("P123", "Create Option Menu")
+        menuInflater.inflate(R.menu.toolbar_menu,menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        Log.d("P123", "Starting Map")
+        startActivity(MapsActivity.intent(this, null))
+        return true
+    }
+
     private fun showErrorMessage() {
         // show error message
     }
 
     private fun showCountry(countries: List<CountryData>) {
-        binding.recyclerView.adapter = CountryRecyclerViewAdapter(countries)
+        binding.recyclerView.adapter = CountryRecyclerViewAdapter(countries, ::showCountrysMap)
         binding.recyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         binding.recyclerView.addItemDecoration(
             DividerItemDecoration(
@@ -46,6 +67,10 @@ class MainActivity : AppCompatActivity() {
                 LinearLayoutManager.VERTICAL
             )
         )
+    }
+
+    private fun showCountrysMap(countryData: CountryData) {
+        startActivity(MapsActivity.intent(this,countryData))
     }
 
     private fun showProgressBar() {
