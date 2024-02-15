@@ -59,7 +59,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showCountry(countries: List<CountryData>) {
-        binding.recyclerView.adapter = CountryRecyclerViewAdapter(countries, ::showCountrysMap)
+        binding.recyclerView.adapter = CountryRecyclerViewAdapter(countries, ::showCountryMap)
         binding.recyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         binding.recyclerView.addItemDecoration(
             DividerItemDecoration(
@@ -69,7 +69,7 @@ class MainActivity : AppCompatActivity() {
         )
     }
 
-    private fun showCountrysMap(countryData: CountryData) {
+    private fun showCountryMap(countryData: CountryData) {
         startActivity(MapsActivity.intent(this,countryData))
     }
 
