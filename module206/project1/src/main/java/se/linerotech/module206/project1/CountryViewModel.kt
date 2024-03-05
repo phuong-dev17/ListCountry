@@ -46,7 +46,9 @@ class CountryViewModel : ViewModel() {
                 it.languages?.toList()?.first()?.second ?: "",
                 it.flags.png,
                 lat = it.latlng.first(),
-                long = it.latlng.last()
+                long = it.latlng.last(),
+                population = it.population,
+                area = it.area
             )
         }.sortedBy { it.country.first() }
     }

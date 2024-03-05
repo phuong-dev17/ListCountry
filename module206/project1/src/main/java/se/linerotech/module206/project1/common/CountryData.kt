@@ -9,5 +9,7 @@ data class CountryData(
     val language: String,
     val flagUrl: String,
     val lat: Double,
-    val long: Double
+    val long: Double,
+    val population: Int,
+    val area: Double
 ) : Parcelable
