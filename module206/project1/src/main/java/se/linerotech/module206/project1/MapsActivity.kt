@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.core.content.IntentCompat
 
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -28,13 +29,14 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         val mapFragment = supportFragmentManager
-            .findFragmentById(R.id.map) as SupportMapFragment
-        mapFragment.getMapAsync(this)
+            .findFragmentById(R.id.map) as? SupportMapFragment
+        mapFragment?.getMapAsync(this)
 
 
     }
 
     override fun onMapReady(googleMap: GoogleMap) {
+        Log.d("P123", "ON MAP READY")
         mMap = googleMap
         if(intent.hasExtra(KEY)) {
             val countryData = IntentCompat.getParcelableExtra(intent, KEY, CountryData::class.java)
